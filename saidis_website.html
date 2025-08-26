@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saidis Acessórios - Pulseiras Exclusivas</title>
+    <style>
+        :root {
+            --primary-color: #a9a0c5; /* Roxo suave como no logo */
+            --secondary-color: #f7e1e8; /* Rosa claro como nas pétalas */
+            --accent-color: #f1c75b; /* Amarelo como o centro da flor */
+            --text-color: #767676; /* Cinza como no logo */
+            --light-bg: #faf7fa; /* Fundo claro */
+            --white: #ffffff;
+            --dark-gray: #555555;
+            --success: #4CAF50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        /* Header e Navegação */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icon {
+            position: relative;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .nav-icon i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary-color);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+        }
+
+        .categories {
+            background-color: var(--white);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .category-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        .category-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Banner principal */
+        .main-banner {
+            height: 400px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-content {
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .banner-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #8e84a7;
+            transform: translateY(-2px);
+        }
+
+        /* Seções de produtos */
+        .section {
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-decoration: line-through;
+            margin-left: 10px;
+            font-weight: 400;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .product-rating span {
+            margin-left: 5px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .add-to-cart {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .wishlist-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        .wishlist-btn:hover {
+            background-color: #ffebee;
+            color: #ff5252;
+        }
+
+        /* Benefícios */
+        .benefits {
+            background-color: var(--white);
+            padding: 50px 5%;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .benefit-description {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            padding: 50px 5%;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 0 25px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 50px 5% 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            background-color: var(--white);
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+
+        /* Modal de Carrinho */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .cart-modal.active {
+            display: block;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-header h3 {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 20px;
+            max-height: calc(100% - 200px);
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            margin: 0 10px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #f0f0f0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--white);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+
+        .cart-total-amount {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .shipping-options {
+            margin-bottom: 20px;
+        }
+
+        .shipping-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .shipping-option input {
+            margin-right: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Overlay de fundo */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin: 15px 0;
+            }
+
+            .banner-content h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cart-modal {
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                border-radius: 25px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-form button {
+                border-radius: 25px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 40px 5%;
+            }
+
+            .banner-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .banner-content p {
+                font-size: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra superior com promoções -->
+    <div class="top-bar">
+        <p>Frete GRÁTIS para todo o Brasil em compras acima de R$ 150,00 | Parcele em até 3x sem juros</p>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="navbar">
+            <img src="https://via.placeholder.com/180x60?text=Saidis+Acessorios" alt="Saidis Acessórios" class="logo">
+            <div class="search-bar">
+                <input type="text" placeholder="O que você está procurando?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-icons">
+                <a href="#" class="nav-icon">
+                    <i class="fas fa-user"></i>
+                    <span>Conta</span>
+                </a>
+                <a href="#" class="nav-icon">
+                    <i class="fas fa-heart"></i>
+                    <span>Favoritos</span>
+                </a>
+                <a href="#" class="nav-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Carrinho</span>
+                    <div class="cart-count">3</div>
+                </a>
+            </div>
+        </div>
+        <div class="categories">
+            <a href="#" class="category-link">Pulseiras</a>
+            <a href="#" class="category-link">Colares</a>
+            <a href="#" class="category-link">Anéis</a>
+            <a href="#" class="category-link">Brincos</a>
+            <a href="#" class="category-link">Conjuntos</a>
+            <a href="#" class="category-link">Lançamentos</a>
+            <a href="#" class="category-link">Promoções</a>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <div class="main-banner">
+        <div class="banner-content">
+            <h1>Pulseiras exclusivas para todos os momentos</h1>
+            <p>Cada peça é única, como você. Descubra nossa coleção de pulseiras artesanais.</p>
+            <a href="#" class="btn">Comprar Agora</a>
+        </div>
+    </div>
+
+    <!-- Seção de Produtos em Destaque -->
+    <section class="section">
+        <div class="section-header">
+            <h2>Pulseiras em Destaque</h2>
+            <p>Conheça nossas pulseiras mais vendidas e amadas</p>
+        </div>
+        <div class="products-grid">
+            <!-- Produto 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500" alt="Pulseira Flor de Lótus">
+                    <div class="product-badge">Novo</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Flor de Lótus</h3>
+                    <div class="product-price">
+                        R$ 79,90
+                        <span class="original-price">R$ 99,90</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(42)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1573408301819-083810809062?q=80&w=500" alt="Pulseira Cristais Azuis">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Cristais Azuis</h3>
+                    <div class="product-price">
+                        R$ 89,90
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(28)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1632635885892-42a8366227d2?q=80&w=500" alt="Pulseira Borboleta Dourada">
+                    <div class="product-badge">Bestseller</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Borboleta Dourada</h3>
+                    <div class="product-price">
+                        R$ 69,90
+                        <span class="original-price">R$ 79,90</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(36)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611591437372-ed14d97f4b9a?q=80&w=500" alt="Pulseira Pedras Naturais">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Pedras Naturais</h3>
+                    <div class="product-price">
+                        R$ 99,90
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(19)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section class="benefits">
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="benefit-title">Entrega para Todo Brasil</h3>
+                <p class="benefit-description">Entregamos para todo o Brasil via SEDEX ou PAC</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3 class="benefit-title">Pagamento Seguro</h3>
+                <p class="benefit-description">Pague com cartão de crédito ou PIX</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-undo"></i>
+                </div>
+                <h3 class="benefit-title">Troca Garantida</h3>
+                <p class="benefit-description">30 dias para troca ou devolução</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="benefit-title">Suporte ao Cliente</h3>
+                <p class="benefit-description">Atendimento de segunda a sexta, das 9h às 18h</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h3>Inscreva-se em nossa Newsletter</h3>
+            <p>Receba nossas novidades, promoções e dicas exclusivas direto no seu email.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu melhor e-mail">
+                <button type="submit">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Institucional</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Termos e Condições</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Atendimento</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Fale Conosco</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Rastrear Pedido</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Categorias</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Pulseiras</a></li>
+                        <li><a href="#">Colares</a></li>
+                        <li><a href="#">Anéis</a></li>
+                        <li><a href="#">Brincos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Pagamento</h4>
+                    <div class="payment-methods">
+                        <div class="payment-method">PIX</div>
+                        <div class="payment-method">Visa</div>
+                        <div class="payment-method">Mastercard</div>
+                        <div class="payment-method">Boleto</div>
+                    </div>
+                    <h4 style="margin-top: 20px;">Redes Sociais</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <a href="#" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Saidis Acessórios. Todos os direitos reservados. | CNPJ: 00.000.000/0001-00</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal do Carrinho -->
+    <div class="overlay" id="cart-overlay"></div>
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Meu Carrinho</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items serão inseridos aqui via JavaScript -->
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500" alt="Pulseira Flor de Lótus">
+                </div>
+                <div class="cart-item-details">
+                    <div class="cart-item-name">Pulseira Flor de Lótus</div>
+                    <div class="cart-item-price">R$ 79,90</div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <img src="https://images.unsplash.com/photo-1573408301819-083810809062?q=80&w=500" alt="Pulseira Cristais Azuis">
+                </div>
+                <div class="cart-item-details">
+                    <div class="cart-item-name">Pulseira Cristais Azuis</div>
+                    <div class="cart-item-price">R$ 89,90</div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="2" min="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="shipping-options">
+                <div class="shipping-option">
+                    <input type="radio" name="shipping" value="free" id="free-shipping" checked>
+                    <label for="free-shipping">Frete Grátis (7-10 dias úteis) - R$ 0,00</label>
+                </div>
+                <div class="shipping-option">
+                    <input type="radio" name="shipping" value="express" id="express-shipping">
+                    <label for="express-shipping">Entrega Expressa (2-3 dias úteis) - R$ 15,90</label>
+                </div>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-amount" id="cart-total">R$ 259,70</span>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos produtos para simulação
+        const products = [
+            {
+                id: 1,
+                name: "Pulseira Flor de Lótus",
+                price: 79.90,
+                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500"
+            },
+            {
+                id: 2,
+                name: "Pulseira Cristais Azuis",
+                price: 89.90,
+                image: "https://images.unsplash.com/photo-1573408301819-083810809062?q=80&w=500"
+            },
+            {
+                id: 3,
+                name: "Pulseira Borboleta Dourada",
+                price: 69.90,
+                image: "https://images.unsplash.com/photo-1632635885892-42a8366227d2?q=80&w=500"
+            },
+            {
+                id: 4,
+                name: "Pulseira Pedras Naturais",
+                price: 99.90,
+                image: "https://images.unsplash.com/photo-1611591437372-ed14d97f4b9a?q=80&w=500"
+            }
+        ];
+
+        // Carrinho de compras
+        let cart = [
+            { id: 1, quantity: 1 },
+            { id: 2, quantity: 2 }
+        ];
+
+        // Elementos DOM
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+
+        // Abrir carrinho
+        cartIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartModal.classList.add('active');
+            cartOverlay.classList.add('active');
+            updateCartDisplay();
+        });
+
+        // Fechar carrinho
+        function closeCartModal() {
+            cartModal.classList.remove('active');
+            cartOverlay.classList.remove('active');
+        }
+
+        closeCart.addEventListener('click', closeCartModal);
+        cartOverlay.addEventListener('click', closeCartModal);
+
+        // Adicionar produto ao carrinho
+        addToCartButtons.forEach((button, index) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productId = index + 1;
+                addToCart(productId);
+                
+                // Feedback visual
+                button.textContent = 'Adicionado!';
+                button.style.backgroundColor = '#4CAF50';
+                setTimeout(() => {
+                    button.textContent = 'Adicionar ao Carrinho';
+                    button.style.backgroundColor = '';
+                }, 2000);
+            });
+        });
+
+        // Adicionar/remover favoritos
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const icon = button.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    button.style.color = '#ff5252';
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    button.style.color = '';
+                }
+            });
+        });
+
+        // Função para adicionar produto ao carrinho
+        function addToCart(productId) {
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id: productId, quantity: 1 });
+            }
+            updateCartCount();
+        }
+
+        // Atualizar contador do carrinho
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = totalItems;
+        }
+
+        // Atualizar exibição do carrinho
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(cartItem => {
+                const product = products.find(p => p.id === cartItem.id);
+                if (product) {
+                    const itemTotal = product.price * cartItem.quantity;
+                    total += itemTotal;
+
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item-image">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${product.name}</div>
+                            <div class="cart-item-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${product.id}, -1)">-</button>
+                                <input type="number" value="${cartItem.quantity}" min="1" class="quantity-input" 
+                                       onchange="setQuantity(${product.id}, this.value)">
+                                <button class="quantity-btn" onclick="updateQuantity(${product.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
+                }
+            });
+
+            // Verificar frete grátis
+            const freeShippingRadio = document.getElementById('free-shipping');
+            const expressShippingRadio = document.getElementById('express-shipping');
+            let shippingCost = 0;
+            
+            if (expressShippingRadio.checked) {
+                shippingCost = 15.90;
+            }
+
+            const finalTotal = total + shippingCost;
+            cartTotal.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
+        }
+
+        // Atualizar quantidade do produto
+        function updateQuantity(productId, change) {
+            const cartItem = cart.find(item => item.id === productId);
+            if (cartItem) {
+                cartItem.quantity += change;
+                if (cartItem.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+                updateCartCount();
+                updateCartDisplay();
+            }
+        }
+
+        // Definir quantidade específica
+        function setQuantity(productId, newQuantity) {
+            const quantity = parseInt(newQuantity);
+            if (quantity > 0) {
+                const cartItem = cart.find(item => item.id === productId);
+                if (cartItem) {
+                    cartItem.quantity = quantity;
+                    updateCartCount();
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        // Event listeners para opções de frete
+        document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+            radio.addEventListener('change', updateCartDisplay);
+        });
+
+        // Busca funcional
+        const searchInput = document.querySelector('.search-bar input');
+        const searchButton = document.querySelector('.search-bar button');
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            if (query) {
+                alert(`Buscando por: "${query}"\n\nEm uma implementação real, isso redirecionaria para uma página de resultados.`);
+            }
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Newsletter
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            if (email) {
+                alert(`Obrigado por se inscrever com o email: ${email}\n\nVocê receberá nossas novidades em breve!`);
+                e.target.querySelector('input[type="email"]').value = '';
+            }
+        });
+
+        // Botão de checkout
+        document.querySelector('.checkout-btn').addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            alert('Redirecionando para o checkout...\n\nEm uma implementação real, isso levaria para a página de pagamento.');
+        });
+
+        // Inicializar contador do carrinho
+        updateCartCount();
+
+        // Links de navegação (simulação)
+        document.querySelectorAll('a[href="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const text = link.textContent.trim();
+                if (!['Carrinho', 'Favoritos', 'Conta'].includes(text)) {
+                    alert(`Navegando para: ${text}\n\nEm uma implementação real, isso redirecionaria para a página correspondente.`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
