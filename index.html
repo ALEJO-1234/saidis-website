@@ -54,8 +54,41 @@
             margin: 0 auto;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 35px;
+            background: linear-gradient(135deg, rgba(169, 160, 197, 0.1), rgba(247, 225, 232, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .logo-container:hover {
+            background: linear-gradient(135deg, rgba(169, 160, 197, 0.15), rgba(247, 225, 232, 0.15));
+            transform: translateY(-1px);
+        }
+
         .logo {
             height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .search-bar {
@@ -149,33 +182,105 @@
 
         /* Banner principal */
         .main-banner {
-            height: 400px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=1200');
+            height: 500px;
+            background-image:
+                linear-gradient(135deg, rgba(169, 160, 197, 0.15), rgba(247, 225, 232, 0.10)),
+                url('BANNER 1.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+            filter: contrast(1.1) saturate(1.2) brightness(1.05);
+        }
+
+        .main-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%),
+                linear-gradient(45deg, rgba(169, 160, 197, 0.08) 0%, rgba(247, 225, 232, 0.12) 100%);
+            animation: premiumGlow 4s ease-in-out infinite alternate;
+            mix-blend-mode: soft-light;
+        }
+
+        @keyframes premiumGlow {
+            0% { 
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            100% { 
+                opacity: 0.7;
+                transform: scale(1.02);
+            }
         }
 
         .banner-content {
             text-align: center;
             color: var(--white);
-            max-width: 800px;
-            padding: 0 20px;
+            max-width: 900px;
+            padding: 40px 30px;
+            position: relative;
+            z-index: 2;
         }
 
         .banner-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6), 
+                         0 0 10px rgba(0, 0, 0, 0.4);
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
+            letter-spacing: -1px;
         }
 
         .banner-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            color: #ffffff;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 400;
+            opacity: 1;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            line-height: 1.4;
+        }
+
+        .banner-content .btn {
+            animation: fadeInUp 1s ease-out 0.4s both;
+            font-size: 1.1rem;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            box-shadow: 0 8px 25px rgba(169, 160, 197, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .banner-content .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(169, 160, 197, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn {
@@ -248,6 +353,86 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .product-carousel {
+            position: relative;
+            height: 100%;
+        }
+
+        .carousel-images {
+            position: relative;
+            height: 100%;
+        }
+
+        .carousel-images img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .carousel-images img.active {
+            opacity: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--primary-color);
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .carousel-arrow:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev {
+            left: 10px;
+        }
+
+        .carousel-arrow.next {
+            right: 10px;
         }
 
         .product-badge {
@@ -332,90 +517,6 @@
             color: #ff5252;
         }
 
-        /* Benefícios */
-        .benefits {
-            background-color: var(--white);
-            padding: 50px 5%;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .benefit-card {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .benefit-title {
-            font-size: 1.2rem;
-            color: var(--dark-gray);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .benefit-description {
-            font-size: 0.9rem;
-            color: var(--text-color);
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background-color: var(--primary-color);
-            padding: 50px 5%;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .newsletter-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .newsletter h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .newsletter p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input {
-            flex-grow: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 25px 0 0 25px;
-            font-size: 1rem;
-        }
-
-        .newsletter-form button {
-            padding: 0 25px;
-            background-color: var(--accent-color);
-            color: var(--white);
-            border: none;
-            border-radius: 0 25px 25px 0;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
         /* Footer */
         footer {
             background-color: var(--dark-gray);
@@ -473,6 +574,39 @@
             font-size: 0.8rem;
             color: var(--dark-gray);
             font-weight: 600;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .pix-method {
+            background: linear-gradient(135deg, #00d4aa, #00a693);
+            color: white;
+        }
+
+        .discount-badge {
+            background: #ff4757;
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .copyright {
@@ -654,10 +788,657 @@
             display: block;
         }
 
+        /* Chatbot Profesional */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chatbot-trigger {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(169, 160, 197, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            animation: pulse 2s infinite;
+        }
+
+        .chatbot-trigger:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(169, 160, 197, 0.6);
+        }
+
+        .chatbot-trigger i {
+            font-size: 24px;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 8px 25px rgba(169, 160, 197, 0.4); }
+            50% { box-shadow: 0 8px 25px rgba(169, 160, 197, 0.6); }
+            100% { box-shadow: 0 8px 25px rgba(169, 160, 197, 0.4); }
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-info h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .chatbot-info p {
+            margin: 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .chatbot-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .chatbot-close:hover {
+            opacity: 1;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-bubble {
+            max-width: 250px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+            animation: messageSlide 0.3s ease;
+        }
+
+        .message.bot .message-bubble {
+            background: white;
+            color: var(--text-color);
+            border: 1px solid #e5e7eb;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quick-replies {
+            padding: 15px 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .quick-reply {
+            background: white;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .quick-reply:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .chatbot-input {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+            background: white;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .chatbot-send {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .chatbot-send:hover {
+            transform: scale(1.05);
+        }
+
+        .instagram-button {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+            transition: all 0.3s;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        .instagram-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            max-width: 60px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: typing 1.4s ease-in-out infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Banner Sticky Instagram */
+        .instagram-sticky-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            padding: 15px;
+            text-align: center;
+            z-index: 999;
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .instagram-sticky-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .instagram-sticky-text {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .instagram-sticky-btn {
+            background: white;
+            color: #833ab4;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .instagram-sticky-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-sticky {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .close-sticky:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* Pop-up de Bienvenida */
+        .welcome-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            max-width: 500px;
+            text-align: center;
+            animation: popupAppear 0.5s ease-out;
+        }
+
+        @keyframes popupAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .welcome-popup.active {
+            display: block;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .popup-overlay.active {
+            display: block;
+        }
+
+        .popup-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .popup-text {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .popup-instagram-btn {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+        }
+
+        .popup-instagram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(131, 58, 180, 0.6);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .popup-close:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        .popup-later {
+            display: block;
+            margin-top: 15px;
+            color: var(--text-color);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Botón Instagram flotante adicional */
+        .instagram-float-btn {
+            position: fixed;
+            left: 20px;
+            bottom: 160px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+            z-index: 998;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .instagram-float-btn i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .instagram-float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Botón WhatsApp flotante */
+        .whatsapp-float-btn {
+            position: fixed;
+            left: 20px;
+            bottom: 90px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            z-index: 998;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float-btn i {
+            font-size: 32px;
+            color: white;
+        }
+
+        .whatsapp-float-btn:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+
+        /* Sección de Testimonios */
+        .testimonials {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(169, 160, 197, 0.05), rgba(247, 225, 232, 0.05));
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .testimonials-header h2 {
+            font-size: 2.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+
+        .testimonials-header p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .testimonial-info h4 {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-rating {
+            color: var(--accent-color);
+        }
+
+        .testimonial-text {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-verified {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--success);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Badge de stock limitado */
+        .stock-badge {
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(238, 90, 111, 0.4);
+            animation: pulseStock 2s infinite;
+            z-index: 5;
+        }
+
+        @keyframes pulseStock {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(238, 90, 111, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(238, 90, 111, 0.6);
+            }
+        }
+
         /* Responsividade */
         @media (max-width: 992px) {
             .navbar {
                 flex-direction: column;
+            }
+
+            .logo-container {
+                margin-bottom: 15px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
             }
 
             .search-bar {
@@ -665,8 +1446,24 @@
                 margin: 15px 0;
             }
 
+            .main-banner {
+                height: 450px;
+                background-attachment: scroll;
+                background-size: 115%;
+                filter: contrast(1.15) saturate(1.3) brightness(1.08);
+            }
+
+            .banner-content {
+                padding: 30px 15px;
+                margin: 0 15px;
+            }
+
             .banner-content h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            .banner-content p {
+                font-size: 1.1rem;
             }
         }
 
@@ -679,32 +1476,57 @@
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
 
-            .newsletter-form {
-                flex-direction: column;
+            .chatbot-window {
+                width: calc(100vw - 40px);
+                height: 70vh;
+                right: 20px;
+                bottom: 80px;
             }
 
-            .newsletter-form input {
-                border-radius: 25px;
-                margin-bottom: 10px;
-            }
-
-            .newsletter-form button {
-                border-radius: 25px;
-                padding: 15px;
+            .chatbot-container {
+                bottom: 15px;
+                right: 15px;
             }
         }
 
         @media (max-width: 576px) {
-            .section {
-                padding: 40px 5%;
+            .logo {
+                height: 50px;
+                width: 50px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .main-banner {
+                height: 400px;
+                background-size: 120%;
+                filter: contrast(1.2) saturate(1.4) brightness(1.1);
+            }
+
+            .banner-content {
+                padding: 25px 20px;
+                margin: 0 10px;
             }
 
             .banner-content h1 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
             }
 
             .banner-content p {
                 font-size: 1rem;
+                margin-bottom: 25px;
+            }
+
+            .banner-content .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 40px 5%;
             }
 
             .products-grid {
@@ -720,13 +1542,16 @@
 <body>
     <!-- Barra superior com promoções -->
     <div class="top-bar">
-        <p>Frete GRÁTIS para todo o Brasil em compras acima de R$ 150,00 | Parcele em até 3x sem juros</p>
+        <p>✨ Pulseiras artesanais exclusivas | Compre pelo Instagram @saidis_acessorios 💜</p>
     </div>
 
     <!-- Cabeçalho -->
     <header>
         <div class="navbar">
-            <img src="https://via.placeholder.com/180x60?text=Saidis+Acessorios" alt="Saidis Acessórios" class="logo">
+            <div class="logo-container">
+                <img src="saidis_logo_margarita_delicada_option2_final.png" alt="Saidis Acessórios" class="logo">
+                <a href="#" class="logo-text">Saidis Acessórios</a>
+            </div>
             <div class="search-bar">
                 <input type="text" placeholder="O que você está procurando?">
                 <button><i class="fas fa-search"></i></button>
@@ -743,16 +1568,13 @@
                 <a href="#" class="nav-icon" id="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                     <span>Carrinho</span>
-                    <div class="cart-count">3</div>
+                    <div class="cart-count">0</div>
                 </a>
             </div>
         </div>
         <div class="categories">
             <a href="#" class="category-link">Pulseiras</a>
             <a href="#" class="category-link">Colares</a>
-            <a href="#" class="category-link">Anéis</a>
-            <a href="#" class="category-link">Brincos</a>
-            <a href="#" class="category-link">Conjuntos</a>
             <a href="#" class="category-link">Lançamentos</a>
             <a href="#" class="category-link">Promoções</a>
         </div>
@@ -763,7 +1585,9 @@
         <div class="banner-content">
             <h1>Pulseiras exclusivas para todos os momentos</h1>
             <p>Cada peça é única, como você. Descubra nossa coleção de pulseiras artesanais.</p>
-            <a href="#" class="btn">Comprar Agora</a>
+            <a href="https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx" target="_blank" class="btn">
+                <i class="fab fa-instagram"></i> Comprar no Instagram
+            </a>
         </div>
     </div>
 
@@ -777,22 +1601,39 @@
             <!-- Produto 1 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500" alt="Pulseira Flor de Lótus">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="Borboleta Lilás.jpg" alt="Pulseira Borboleta Lilás 1" class="active">
+                            <img src="LILA 1.jpg" alt="Pulseira Borboleta Lilás 2">
+                            <img src="LILA 2.jpg" alt="Pulseira Borboleta Lilás 3">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(0, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(0, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(0, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(0, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(0, 2)"></span>
+                        </div>
+                    </div>
                     <div class="product-badge">Novo</div>
+                    <div class="stock-badge">🔥 Só 3 disponíveis!</div>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Pulseira Flor de Lótus</h3>
+                    <h3 class="product-name">Pulseira Borboleta Lilás</h3>
                     <div class="product-price">
-                        R$ 79,90
-                        <span class="original-price">R$ 99,90</span>
+                        R$ 20,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(42)</span>
+                        <i class="fas fa-star"></i>
+                        <span>(5)</span>
                     </div>
                     <div class="product-actions">
                         <button class="btn add-to-cart">Adicionar ao Carrinho</button>
@@ -804,12 +1645,31 @@
             <!-- Produto 2 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1573408301819-083810809062?q=80&w=500" alt="Pulseira Cristais Azuis">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="Margarete.jpg" alt="Pulseira Margarida 1" class="active">
+                            <img src="MARGARETE 1.jpg" alt="Pulseira Margarida 2">
+                            <img src="MARGARETE 2.jpg" alt="Pulseira Margarida 3">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(1, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(1, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(1, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(1, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(1, 2)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">⚡ Últimas 5 unidades!</div>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Pulseira Cristais Azuis</h3>
+                    <h3 class="product-name">Pulseira Margarida</h3>
                     <div class="product-price">
-                        R$ 89,90
+                        R$ 20,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -817,7 +1677,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <span>(28)</span>
+                        <span>(8)</span>
                     </div>
                     <div class="product-actions">
                         <button class="btn add-to-cart">Adicionar ao Carrinho</button>
@@ -829,22 +1689,37 @@
             <!-- Produto 3 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1632635885892-42a8366227d2?q=80&w=500" alt="Pulseira Borboleta Dourada">
-                    <div class="product-badge">Bestseller</div>
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="luna 1.jpg" alt="Pulseira Luna Lavanda 1" class="active">
+                            <img src="luna 2.jpg" alt="Pulseira Luna Lavanda 2">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(2, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(2, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(2, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(2, 1)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">💜 Apenas 4 restantes!</div>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Pulseira Borboleta Dourada</h3>
+                    <h3 class="product-name">Pulseira Luna Lavanda</h3>
                     <div class="product-price">
-                        R$ 69,90
-                        <span class="original-price">R$ 79,90</span>
+                        R$ 20,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span>(36)</span>
+                        <i class="fas fa-star"></i>
+                        <span>(6)</span>
                     </div>
                     <div class="product-actions">
                         <button class="btn add-to-cart">Adicionar ao Carrinho</button>
@@ -853,23 +1728,42 @@
                 </div>
             </div>
 
-            <!-- Produto 4 -->
+            <!-- Producto 4: Flor de Lis -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1611591437372-ed14d97f4b9a?q=80&w=500" alt="Pulseira Pedras Naturais">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="FLOR DE LI.jpeg" alt="Pulseira Flor de Lis 1" class="active">
+                            <img src="FLOR PALIDA1.jpeg" alt="Pulseira Flor de Lis 2">
+                            <img src="FLOR PALDIA 2.jpeg" alt="Pulseira Flor de Lis 3">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(3, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(3, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(3, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(3, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(3, 2)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">💜 Edição Limitada!</div>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Pulseira Pedras Naturais</h3>
+                    <h3 class="product-name">Pulseira Flor de Lis</h3>
                     <div class="product-price">
-                        R$ 99,90
+                        R$ 20,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(19)</span>
+                        <i class="fas fa-star"></i>
+                        <span>(8)</span>
                     </div>
                     <div class="product-actions">
                         <button class="btn add-to-cart">Adicionar ao Carrinho</button>
@@ -877,52 +1771,173 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Producto 5: Pulseira da Venezuela -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="PULSEIRA DA VENEZUELA.jpeg" alt="Pulseira da Venezuela 1" class="active">
+                            <img src="PULSEIRA DA VENEZUELA 1.jpeg" alt="Pulseira da Venezuela 2">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(4, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(4, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(4, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(4, 1)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">💛💙❤️ Especial Venezuela!</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira da Venezuela</h3>
+                    <div class="product-price">
+                        R$ 20,00
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(12)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 6: Flores de Rosalinda -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="PULSERA FLORES DE ROSALINDA.jpeg" alt="Pulseira Flores de Rosalinda 1" class="active">
+                            <img src="PULSERA FLORES DE ROSALINDA 1.jpeg" alt="Pulseira Flores de Rosalinda 2">
+                            <img src="PULSERA FLORES DE ROSALINDA 2.jpeg" alt="Pulseira Flores de Rosalinda 3">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(5, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(5, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(5, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(5, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(5, 2)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">🌸 Delicada e Exclusiva!</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Flores de Rosalinda</h3>
+                    <div class="product-price">
+                        R$ 20,00
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(15)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Benefícios -->
-    <section class="benefits">
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-truck"></i>
-                </div>
-                <h3 class="benefit-title">Entrega para Todo Brasil</h3>
-                <p class="benefit-description">Entregamos para todo o Brasil via SEDEX ou PAC</p>
+    <!-- Testimonios -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="testimonials-header">
+                <h2>O que nossas clientes dizem 💜</h2>
+                <p>Veja a opinião de quem já usa nossas pulseiras</p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-credit-card"></i>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">M</div>
+                        <div class="testimonial-info">
+                            <h4>Maria Silva</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Comprei a Borboleta Lilás e amei! A qualidade é incrível, super delicada e linda. Uso todos os dias! 💜"
+                    </p>
+                    <div class="testimonial-verified">
+                        <i class="fas fa-check-circle"></i>
+                        Compra verificada
+                    </div>
                 </div>
-                <h3 class="benefit-title">Pagamento Seguro</h3>
-                <p class="benefit-description">Pague com cartão de crédito ou PIX</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-undo"></i>
-                </div>
-                <h3 class="benefit-title">Troca Garantida</h3>
-                <p class="benefit-description">30 dias para troca ou devolução</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3 class="benefit-title">Suporte ao Cliente</h3>
-                <p class="benefit-description">Atendimento de segunda a sexta, das 9h às 18h</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="newsletter-container">
-            <h3>Inscreva-se em nossa Newsletter</h3>
-            <p>Receba nossas novidades, promoções e dicas exclusivas direto no seu email.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Seu melhor e-mail">
-                <button type="submit">Inscrever-se</button>
-            </form>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">A</div>
+                        <div class="testimonial-info">
+                            <h4>Ana Carolina</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        "A Margarida é perfeita! Chegou super rápido e bem embalada. O atendimento pelo Instagram foi excelente. Recomendo!"
+                    </p>
+                    <div class="testimonial-verified">
+                        <i class="fas fa-check-circle"></i>
+                        Compra verificada
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">J</div>
+                        <div class="testimonial-info">
+                            <h4>Juliana Costa</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Comprei as 3 pulseiras! Cada uma mais linda que a outra. Preço justo e qualidade impecável. Já virei cliente fiel! 🌸"
+                    </p>
+                    <div class="testimonial-verified">
+                        <i class="fas fa-check-circle"></i>
+                        Compra verificada
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -935,7 +1950,7 @@
                     <ul class="footer-links">
                         <li><a href="#">Sobre Nós</a></li>
                         <li><a href="#">Termos e Condições</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
                         <li><a href="#">Trocas e Devoluções</a></li>
                     </ul>
                 </div>
@@ -953,22 +1968,30 @@
                     <ul class="footer-links">
                         <li><a href="#">Pulseiras</a></li>
                         <li><a href="#">Colares</a></li>
-                        <li><a href="#">Anéis</a></li>
-                        <li><a href="#">Brincos</a></li>
+                        <li><a href="#">Lançamentos</a></li>
+                        <li><a href="#">Promoções</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Pagamento</h4>
                     <div class="payment-methods">
-                        <div class="payment-method">PIX</div>
-                        <div class="payment-method">Visa</div>
-                        <div class="payment-method">Mastercard</div>
-                        <div class="payment-method">Boleto</div>
+                        <div class="payment-method pix-method">
+                            <i class="fas fa-qrcode"></i> PIX
+                            <span class="discount-badge">5% OFF</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-cc-visa"></i> Visa
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-cc-mastercard"></i> Mastercard
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-barcode"></i> Boleto
+                        </div>
                     </div>
                     <h4 style="margin-top: 20px;">Redes Sociais</h4>
                     <div style="display: flex; gap: 10px; margin-top: 10px;">
-                        <a href="#" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
                         <a href="#" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -988,51 +2011,105 @@
         </div>
         <div class="cart-items" id="cart-items">
             <!-- Items serão inseridos aqui via JavaScript -->
-            <div class="cart-item">
-                <div class="cart-item-image">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500" alt="Pulseira Flor de Lótus">
-                </div>
-                <div class="cart-item-details">
-                    <div class="cart-item-name">Pulseira Flor de Lótus</div>
-                    <div class="cart-item-price">R$ 79,90</div>
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn">-</button>
-                        <input type="number" value="1" min="1" class="quantity-input">
-                        <button class="quantity-btn">+</button>
-                    </div>
-                </div>
-            </div>
-            <div class="cart-item">
-                <div class="cart-item-image">
-                    <img src="https://images.unsplash.com/photo-1573408301819-083810809062?q=80&w=500" alt="Pulseira Cristais Azuis">
-                </div>
-                <div class="cart-item-details">
-                    <div class="cart-item-name">Pulseira Cristais Azuis</div>
-                    <div class="cart-item-price">R$ 89,90</div>
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn">-</button>
-                        <input type="number" value="2" min="1" class="quantity-input">
-                        <button class="quantity-btn">+</button>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="cart-footer">
-            <div class="shipping-options">
-                <div class="shipping-option">
-                    <input type="radio" name="shipping" value="free" id="free-shipping" checked>
-                    <label for="free-shipping">Frete Grátis (7-10 dias úteis) - R$ 0,00</label>
-                </div>
-                <div class="shipping-option">
-                    <input type="radio" name="shipping" value="express" id="express-shipping">
-                    <label for="express-shipping">Entrega Expressa (2-3 dias úteis) - R$ 15,90</label>
-                </div>
-            </div>
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="cart-total-amount" id="cart-total">R$ 259,70</span>
+                <span class="cart-total-amount" id="cart-total">R$ 0,00</span>
             </div>
-            <button class="checkout-btn">Finalizar Compra</button>
+            <p style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 15px; text-align: center;">
+                📦 O envio será coordenado diretamente pelo Instagram
+            </p>
+            <button class="checkout-btn">Continuar no Instagram</button>
+        </div>
+    </div>
+
+    <!-- Pop-up de Bienvenida -->
+    <div class="popup-overlay" id="popup-overlay"></div>
+    <div class="welcome-popup" id="welcome-popup">
+        <button class="popup-close" id="popup-close">&times;</button>
+        <img src="saidis_logo_margarita_delicada_option2_final.png" alt="Saidis Logo" class="popup-logo">
+        <h2 class="popup-title">¡Bienvenida a Saidis! 💜</h2>
+        <p class="popup-text">
+            Descubre nuestras pulseiras exclusivas en Instagram.
+            ¡Síguenos para ver todas nuestras creaciones, promociones especiales y realizar tu pedido!
+        </p>
+        <a href="https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx" target="_blank" class="popup-instagram-btn">
+            <i class="fab fa-instagram"></i>
+            Ver en Instagram
+        </a>
+        <span class="popup-later" id="popup-later">Continuar navegando</span>
+    </div>
+
+    <!-- Banner Sticky Instagram -->
+    <div class="instagram-sticky-banner" id="instagram-sticky">
+        <div class="instagram-sticky-content">
+            <span class="instagram-sticky-text">
+                <i class="fab fa-instagram"></i> ¡Compra directamente en nuestro Instagram! 📸
+            </span>
+            <a href="https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx" target="_blank" class="instagram-sticky-btn">
+                <i class="fab fa-instagram"></i>
+                Ir a @saidis_acessorios
+            </a>
+            <button class="close-sticky" id="close-sticky">&times;</button>
+        </div>
+    </div>
+
+    <!-- Botón flotante Instagram -->
+    <a href="https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx" target="_blank" class="instagram-float-btn" title="Síguenos en Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/5592999941770?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20pulseiras%20💜" target="_blank" class="whatsapp-float-btn" title="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Chatbot Profesional -->
+    <div class="chatbot-container">
+        <button class="chatbot-trigger" id="chatbot-trigger">
+            <i class="fas fa-comments"></i>
+        </button>
+        
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chatbot-info">
+                    <h4>Asistente Saidis</h4>
+                    <p>🟢 En línea - Siempre aquí para ayudarte</p>
+                </div>
+                <button class="chatbot-close" id="chatbot-close">×</button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-bubble">
+                        ¡Hola! 👋 Soy tu asistente virtual de Saidis Acessórios. Estoy aquí para ayudarte con cualquier duda sobre nuestras pulseiras exclusivas. ¿En qué te puedo ayudar?
+                    </div>
+                </div>
+                <div class="typing-indicator" id="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            
+            <div class="quick-replies" id="quick-replies">
+                <button class="quick-reply" data-reply="productos">Ver Productos</button>
+                <button class="quick-reply" data-reply="envios">Envíos</button>
+                <button class="quick-reply" data-reply="tallas">Tallas</button>
+                <button class="quick-reply" data-reply="pagos">Pagos</button>
+                <button class="quick-reply" data-reply="instagram">Instagram</button>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje...">
+                <button class="chatbot-send" id="chatbot-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -1041,35 +2118,44 @@
         const products = [
             {
                 id: 1,
-                name: "Pulseira Flor de Lótus",
-                price: 79.90,
-                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500"
+                name: "Pulseira Borboleta Lilás",
+                price: 20.00,
+                image: "Borboleta Lilás.jpg"
             },
             {
                 id: 2,
-                name: "Pulseira Cristais Azuis",
-                price: 89.90,
-                image: "https://images.unsplash.com/photo-1573408301819-083810809062?q=80&w=500"
+                name: "Pulseira Margarida",
+                price: 20.00,
+                image: "Margarete.jpg"
             },
             {
                 id: 3,
-                name: "Pulseira Borboleta Dourada",
-                price: 69.90,
-                image: "https://images.unsplash.com/photo-1632635885892-42a8366227d2?q=80&w=500"
+                name: "Pulseira Luna Lavanda",
+                price: 20.00,
+                image: "luna 1.jpg"
             },
             {
                 id: 4,
-                name: "Pulseira Pedras Naturais",
-                price: 99.90,
-                image: "https://images.unsplash.com/photo-1611591437372-ed14d97f4b9a?q=80&w=500"
+                name: "Pulseira Flor de Lis",
+                price: 20.00,
+                image: "FLOR DE LI.jpeg"
+            },
+            {
+                id: 5,
+                name: "Pulseira da Venezuela",
+                price: 20.00,
+                image: "PULSEIRA DA VENEZUELA.jpeg"
+            },
+            {
+                id: 6,
+                name: "Pulseira Flores de Rosalinda",
+                price: 20.00,
+                image: "PULSERA FLORES DE ROSALINDA.jpeg"
             }
         ];
 
-        // Carrinho de compras
-        let cart = [
-            { id: 1, quantity: 1 },
-            { id: 2, quantity: 2 }
-        ];
+        // Carrinho de compras (vacío al inicio)
+        let cart = [];
 
         // Elementos DOM
         const cartIcon = document.getElementById('cart-icon');
@@ -1182,17 +2268,8 @@
                 }
             });
 
-            // Verificar frete grátis
-            const freeShippingRadio = document.getElementById('free-shipping');
-            const expressShippingRadio = document.getElementById('express-shipping');
-            let shippingCost = 0;
-            
-            if (expressShippingRadio.checked) {
-                shippingCost = 15.90;
-            }
-
-            const finalTotal = total + shippingCost;
-            cartTotal.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
+            // Total sin costos de envío (se coordina por Instagram)
+            cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
         }
 
         // Atualizar quantidade do produto
@@ -1221,11 +2298,6 @@
             }
         }
 
-        // Event listeners para opções de frete
-        document.querySelectorAll('input[name="shipping"]').forEach(radio => {
-            radio.addEventListener('change', updateCartDisplay);
-        });
-
         // Busca funcional
         const searchInput = document.querySelector('.search-bar input');
         const searchButton = document.querySelector('.search-bar button');
@@ -1244,24 +2316,49 @@
             }
         });
 
-        // Newsletter
-        const newsletterForm = document.querySelector('.newsletter-form');
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = e.target.querySelector('input[type="email"]').value;
-            if (email) {
-                alert(`Obrigado por se inscrever com o email: ${email}\n\nVocê receberá nossas novidades em breve!`);
-                e.target.querySelector('input[type="email"]').value = '';
-            }
-        });
-
-        // Botão de checkout
+        // Botão de checkout - Redirige a Instagram con el pedido
         document.querySelector('.checkout-btn').addEventListener('click', () => {
             if (cart.length === 0) {
                 alert('Seu carrinho está vazio!');
                 return;
             }
-            alert('Redirecionando para o checkout...\n\nEm uma implementação real, isso levaria para a página de pagamento.');
+
+            // Generar lista de productos del carrito
+            let productList = '';
+            let total = 0;
+
+            cart.forEach(cartItem => {
+                const product = products.find(p => p.id === cartItem.id);
+                if (product) {
+                    const itemTotal = product.price * cartItem.quantity;
+                    total += itemTotal;
+                    productList += `\n• ${product.name} (${cartItem.quantity}x) - R$ ${itemTotal.toFixed(2)}`;
+                }
+            });
+
+            const pixDiscount = (total * 0.05).toFixed(2);
+            const totalWithPix = (total * 0.95).toFixed(2);
+
+            // Crear mensaje para Instagram
+            const message = `¡Hola! 💜 Me interesan las siguientes pulseiras:${productList}\n\n💰 Total: R$ ${total.toFixed(2)}\n\n¿Podrías darme más información sobre el envío y formas de pago?\n\n¡Gracias!`;
+
+            // Codificar el mensaje para URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Abrir Instagram con el mensaje preparado (o copiar al portapapeles)
+            if (confirm(`💜 ¡Perfecto! Vamos a Instagram\n\nSe abrirá @saidis_acessorios\n\nPuedes enviar este mensaje:\n\n${message}`)) {
+                // Intentar copiar al portapapeles
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(message).then(() => {
+                        console.log('Mensaje copiado al portapapeles');
+                    }).catch(err => {
+                        console.log('No se pudo copiar:', err);
+                    });
+                }
+
+                // Abrir Instagram
+                window.open('https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx', '_blank');
+            }
         });
 
         // Inicializar contador do carrinho
@@ -1277,6 +2374,324 @@
                 }
             });
         });
+
+        // CHATBOT PROFESIONAL
+        class SaidisBot {
+            constructor() {
+                this.responses = {
+                    productos: {
+                        text: "✨ ¡Nuestras pulseiras son únicas! Tenemos una hermosa colección de pulseras artesanales:\n\n🦋 Pulseira Borboleta Lilás - R$ 20,00\n🌼 Pulseira Margarida - R$ 20,00\n🌙 Pulseira Luna Lavanda - R$ 20,00\n\n💜 Todas hechas con amor y materiales de alta calidad\n📸 ¡Mira más fotos en nuestro Instagram!",
+                        showInstagram: true
+                    },
+                    envios: {
+                        text: "📦 ¡Enviamos para todo Brasil!\n\n💜 El envío se coordina directamente por Instagram\n📱 Contáctanos para conocer las opciones de envío según tu ubicación\n✨ Tu pulseira llegará perfectamente embalada\n\n¡Escríbenos para más detalles!",
+                        showInstagram: true
+                    },
+                    tallas: {
+                        text: "📏 Nuestras pulseiras son ajustables y se adaptan a la mayoría de muñecas:\n\n• Tamaño estándar: 16-20cm\n• Material elástico de alta calidad\n• Cierre ajustable en algunas piezas\n\nSi tienes dudas sobre el tamaño, ¡contáctanos por Instagram @sp__acessorios12! 💌",
+                        showInstagram: true
+                    },
+                    pagos: {
+                        text: "💳 Métodos de pago disponibles:\n\n🎯 PIX:\n   • Chave: 70880871202\n   • Banco: Nubank\n   • Nome: Saidis Acessórios\n\n💳 Cartão de crédito\n📄 Boleto bancário\n\n📱 Contáctanos por Instagram para coordinar el pago\n🔒 Pago 100% seguro y protegido\n💰 Los mejores precios garantizados",
+                        showInstagram: true
+                    },
+                    instagram: {
+                        text: "📸 ¡Síguenos en Instagram @saidis_acessorios para ver todas nuestras creaciones!\n\n✨ Fotos exclusivas de nuestras pulseiras\n🎁 Promociones especiales\n👥 Comunidad de clientas felices\n📩 Atención personalizada por DM",
+                        showInstagram: true
+                    },
+                    saludo: {
+                        text: "¡Hola! 👋 ¡Qué alegría tenerte aquí! Soy tu asistente virtual de Saidis Acessórios. Estoy aquí para ayudarte con todo lo que necesites sobre nuestras hermosas pulseiras artesanales. ¿En qué puedo ayudarte hoy? ✨",
+                        showInstagram: false
+                    },
+                    despedida: {
+                        text: "¡Gracias por visitarnos! 💜 Ha sido un placer ayudarte. Si tienes más preguntas, estaré aquí esperándote. ¡No olvides seguirnos en Instagram @saidis_acessorios para ver todas nuestras novedades! ✨",
+                        showInstagram: true
+                    },
+                    precios: {
+                        text: "💰 Nuestros precios son súper accesibles:\n\n🌸 Todas nuestras pulseiras a R$ 20,00\n✨ Calidad premium\n📦 Envío coordinado según tu ubicación\n💜 Formas de pago por Instagram\n\n¡Cada pulseira es una obra de arte única! 🎨",
+                        showInstagram: true
+                    },
+                    materiales: {
+                        text: "🌟 Usamos solo materiales de la mejor calidad:\n\n💎 Cristales naturales\n🌿 Piedras semipreciosas\n🎭 Detalles en oro y plata\n🧵 Hilo resistente y duradero\n\n¡Cada pieza está hecha con amor y cuidado! 💝",
+                        showInstagram: true
+                    },
+                    cuidados: {
+                        text: "💡 Para que tu pulseira dure más tiempo:\n\n✨ Evita el contacto con perfumes\n🚿 No uses al bañarte\n🌙 Guárdala en lugar seco\n🧽 Limpia suavemente con paño suave\n\n¡Así mantendrás su belleza por años! 💖\n\n📸 Más consejos en @saidis_acessorios",
+                        showInstagram: true
+                    },
+                    default: {
+                        text: "¡Gracias por tu mensaje! 😊 Nuestro equipo está aquí para ayudarte con cualquier duda sobre nuestras hermosas pulseiras. Para una atención más personalizada, te invito a contactarnos por Instagram @saidis_acessorios donde podremos ayudarte mejor. ✨",
+                        showInstagram: true
+                    }
+                };
+                
+                this.initializeBot();
+            }
+
+            initializeBot() {
+                this.chatbotTrigger = document.getElementById('chatbot-trigger');
+                this.chatbotWindow = document.getElementById('chatbot-window');
+                this.chatbotClose = document.getElementById('chatbot-close');
+                this.chatbotMessages = document.getElementById('chatbot-messages');
+                this.chatbotInput = document.getElementById('chatbot-input');
+                this.chatbotSend = document.getElementById('chatbot-send');
+                this.quickReplies = document.querySelectorAll('.quick-reply');
+                this.typingIndicator = document.getElementById('typing-indicator');
+
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                this.chatbotTrigger.addEventListener('click', () => this.openChat());
+                this.chatbotClose.addEventListener('click', () => this.closeChat());
+                this.chatbotSend.addEventListener('click', () => this.sendMessage());
+                this.chatbotInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+
+                this.quickReplies.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const reply = e.target.getAttribute('data-reply');
+                        this.handleQuickReply(reply);
+                    });
+                });
+            }
+
+            openChat() {
+                this.chatbotWindow.classList.add('active');
+                this.chatbotInput.focus();
+            }
+
+            closeChat() {
+                this.chatbotWindow.classList.remove('active');
+            }
+
+            sendMessage() {
+                const message = this.chatbotInput.value.trim();
+                if (!message) return;
+
+                this.addUserMessage(message);
+                this.chatbotInput.value = '';
+                
+                // Analizar mensaje y responder
+                setTimeout(() => {
+                    this.processMessage(message);
+                }, 1000);
+            }
+
+            addUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message user';
+                messageDiv.innerHTML = `<div class="message-bubble">${message}</div>`;
+                
+                const messagesContainer = this.chatbotMessages;
+                messagesContainer.insertBefore(messageDiv, this.typingIndicator);
+                this.scrollToBottom();
+            }
+
+            addBotMessage(message, showInstagramButton = false) {
+                this.showTyping();
+                
+                setTimeout(() => {
+                    this.hideTyping();
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message bot';
+                    
+                    let content = `<div class="message-bubble">${message}</div>`;
+                    
+                    if (showInstagramButton) {
+                        content += `
+                            <a href="https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx" target="_blank" class="instagram-button">
+                                <i class="fab fa-instagram"></i>
+                                Seguir en Instagram
+                            </a>
+                        `;
+                    }
+                    
+                    messageDiv.innerHTML = content;
+                    
+                    const messagesContainer = this.chatbotMessages;
+                    messagesContainer.insertBefore(messageDiv, this.typingIndicator);
+                    this.scrollToBottom();
+                }, 2000);
+            }
+
+            processMessage(message) {
+                const msg = message.toLowerCase();
+                let response;
+
+                // Análisis inteligente del mensaje
+                if (msg.includes('hola') || msg.includes('buenos') || msg.includes('ola')) {
+                    response = this.responses.saludo;
+                } else if (msg.includes('chau') || msg.includes('adios') || msg.includes('gracias')) {
+                    response = this.responses.despedida;
+                } else if (msg.includes('producto') || msg.includes('pulseira') || msg.includes('pulsera') || msg.includes('ver')) {
+                    response = this.responses.productos;
+                } else if (msg.includes('envio') || msg.includes('frete') || msg.includes('entrega')) {
+                    response = this.responses.envios;
+                } else if (msg.includes('talla') || msg.includes('tamaño') || msg.includes('medida')) {
+                    response = this.responses.tallas;
+                } else if (msg.includes('pago') || msg.includes('precio') || msg.includes('costo') || msg.includes('valor')) {
+                    if (msg.includes('precio') || msg.includes('costo') || msg.includes('valor')) {
+                        response = this.responses.precios;
+                    } else {
+                        response = this.responses.pagos;
+                    }
+                } else if (msg.includes('instagram') || msg.includes('redes') || msg.includes('social')) {
+                    response = this.responses.instagram;
+                } else if (msg.includes('material') || msg.includes('calidad') || msg.includes('hecho')) {
+                    response = this.responses.materiales;
+                } else if (msg.includes('cuidado') || msg.includes('mantener') || msg.includes('limpiar')) {
+                    response = this.responses.cuidados;
+                } else {
+                    response = this.responses.default;
+                }
+
+                this.addBotMessage(response.text, response.showInstagram);
+            }
+
+            handleQuickReply(replyType) {
+                const response = this.responses[replyType] || this.responses.default;
+                
+                // Agregar mensaje del usuario (simulado)
+                const userTexts = {
+                    productos: "Ver Productos",
+                    envios: "¿Cómo son los envíos?",
+                    tallas: "¿Qué tallas tienen?",
+                    pagos: "¿Qué formas de pago aceptan?",
+                    instagram: "Instagram"
+                };
+                
+                this.addUserMessage(userTexts[replyType]);
+                this.addBotMessage(response.text, response.showInstagram);
+            }
+
+            showTyping() {
+                this.typingIndicator.style.display = 'flex';
+                this.scrollToBottom();
+            }
+
+            hideTyping() {
+                this.typingIndicator.style.display = 'none';
+            }
+
+            scrollToBottom() {
+                this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight;
+            }
+        }
+
+        // Inicializar el chatbot cuando se carga la página
+        document.addEventListener('DOMContentLoaded', () => {
+            const bot = new SaidisBot();
+            initializeSalesFunnel();
+        });
+
+        // EMBUDO DE VENTAS - INSTAGRAM FUNNEL
+        function initializeSalesFunnel() {
+            const popup = document.getElementById('welcome-popup');
+            const popupOverlay = document.getElementById('popup-overlay');
+            const popupClose = document.getElementById('popup-close');
+            const popupLater = document.getElementById('popup-later');
+            const stickyBanner = document.getElementById('instagram-sticky');
+            const closeStickyBtn = document.getElementById('close-sticky');
+
+            // Mostrar popup después de 3 segundos
+            setTimeout(() => {
+                if (!localStorage.getItem('popupShown')) {
+                    popup.classList.add('active');
+                    popupOverlay.classList.add('active');
+                }
+            }, 3000);
+
+            // Cerrar popup
+            function closePopup() {
+                popup.classList.remove('active');
+                popupOverlay.classList.remove('active');
+                localStorage.setItem('popupShown', 'true');
+            }
+
+            popupClose.addEventListener('click', closePopup);
+            popupLater.addEventListener('click', closePopup);
+            popupOverlay.addEventListener('click', closePopup);
+
+            // Cerrar banner sticky
+            closeStickyBtn.addEventListener('click', () => {
+                stickyBanner.style.display = 'none';
+            });
+
+            // Redirigir todos los botones "Adicionar ao Carrinho" a Instagram
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Mostrar mensaje antes de redirigir
+                    const productName = button.closest('.product-card').querySelector('.product-name').textContent;
+
+                    if (confirm(`💜 ¡Excelente elección!\n\n"${productName}"\n\n¿Quieres comprarla en nuestro Instagram?\n\nTe llevaremos a @saidis_acessorios donde podrás hacer tu pedido directamente por DM.`)) {
+                        window.open('https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx', '_blank');
+                    }
+                });
+            });
+
+            // El botón de checkout ya tiene su propio manejador con la lista de productos
+        }
+
+        // CARRUSEL DE IMÁGENES DE PRODUCTOS
+        let currentImageIndex = [0, 0, 0, 0, 0, 0]; // Un índice por cada producto
+
+        function changeImage(productIndex, direction) {
+            const carousel = document.querySelectorAll('.product-carousel')[productIndex];
+            const images = carousel.querySelectorAll('.carousel-images img');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+
+            // Remover clase active de la imagen actual
+            images[currentImageIndex[productIndex]].classList.remove('active');
+            dots[currentImageIndex[productIndex]].classList.remove('active');
+
+            // Calcular nuevo índice
+            currentImageIndex[productIndex] += direction;
+
+            // Loop circular
+            if (currentImageIndex[productIndex] < 0) {
+                currentImageIndex[productIndex] = images.length - 1;
+            } else if (currentImageIndex[productIndex] >= images.length) {
+                currentImageIndex[productIndex] = 0;
+            }
+
+            // Agregar clase active a la nueva imagen
+            images[currentImageIndex[productIndex]].classList.add('active');
+            dots[currentImageIndex[productIndex]].classList.add('active');
+        }
+
+        function goToImage(productIndex, imageIndex) {
+            const carousel = document.querySelectorAll('.product-carousel')[productIndex];
+            const images = carousel.querySelectorAll('.carousel-images img');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+
+            // Remover clase active
+            images[currentImageIndex[productIndex]].classList.remove('active');
+            dots[currentImageIndex[productIndex]].classList.remove('active');
+
+            // Establecer nuevo índice
+            currentImageIndex[productIndex] = imageIndex;
+
+            // Agregar clase active
+            images[currentImageIndex[productIndex]].classList.add('active');
+            dots[currentImageIndex[productIndex]].classList.add('active');
+        }
+
+        // Auto-play del carrusel (opcional, cada 3 segundos)
+        setInterval(() => {
+            for (let i = 0; i < currentImageIndex.length; i++) {
+                const carousel = document.querySelectorAll('.product-carousel')[i];
+                if (carousel) {
+                    changeImage(i, 1);
+                }
+            }
+        }, 4000);
     </script>
 </body>
 </html>
