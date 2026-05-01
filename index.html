@@ -2619,24 +2619,6 @@
             closeStickyBtn.addEventListener('click', () => {
                 stickyBanner.style.display = 'none';
             });
-
-            // Redirigir todos los botones "Adicionar ao Carrinho" a Instagram
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    // Mostrar mensaje antes de redirigir
-                    const productName = button.closest('.product-card').querySelector('.product-name').textContent;
-
-                    if (confirm(`💜 ¡Excelente elección!\n\n"${productName}"\n\n¿Quieres comprarla en nuestro Instagram?\n\nTe llevaremos a @saidis_acessorios donde podrás hacer tu pedido directamente por DM.`)) {
-                        window.open('https://www.instagram.com/saidis_acessorios?igsh=bTVjYmx5Y3Jqcnhx', '_blank');
-                    }
-                });
-            });
-
-            // El botón de checkout ya tiene su propio manejador con la lista de productos
         }
 
         // CARRUSEL DE IMÁGENES DE PRODUCTOS
