@@ -180,6 +180,20 @@
             color: var(--primary-color);
         }
 
+        .category-link.active {
+            color: var(--primary-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .empty-category {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-color);
+            font-style: italic;
+        }
+
         /* Banner principal */
         .main-banner {
             height: 500px;
@@ -473,6 +487,39 @@
             text-decoration: line-through;
             margin-left: 10px;
             font-weight: 400;
+        }
+
+        .discount-tag {
+            background-color: #e53935;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-left: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .product-card.featured {
+            box-shadow: 0 8px 28px rgba(169, 160, 197, 0.35);
+            border: 2px solid var(--primary-color);
+            position: relative;
+        }
+
+        .product-card.featured::before {
+            content: "⭐ Destaque";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color), #c9a8d8);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 12px;
+            z-index: 2;
+            white-space: nowrap;
         }
 
         .product-rating {
@@ -1573,10 +1620,11 @@
             </div>
         </div>
         <div class="categories">
-            <a href="#" class="category-link">Pulseiras</a>
-            <a href="#" class="category-link">Colares</a>
-            <a href="#" class="category-link">Lançamentos</a>
-            <a href="#" class="category-link">Promoções</a>
+            <a href="#" class="category-link" data-category="all">Todos</a>
+            <a href="#" class="category-link" data-category="pulseiras">Pulseiras</a>
+            <a href="#" class="category-link" data-category="colares">Colares</a>
+            <a href="#" class="category-link" data-category="lancamento">Lançamentos</a>
+            <a href="#" class="category-link" data-category="promocao">Promoções</a>
         </div>
     </header>
 
@@ -1598,14 +1646,14 @@
             <p>Conheça nossas pulseiras mais vendidas e amadas</p>
         </div>
         <div class="products-grid">
-            <!-- Produto 1 -->
-            <div class="product-card">
+            <!-- Producto 1: Conjunto Gardênia (destacado) -->
+            <div class="product-card featured" data-categories="colares,lancamento,promocao" data-hide-from-all="true">
                 <div class="product-image">
                     <div class="product-carousel">
                         <div class="carousel-images">
-                            <img src="Borboleta Lilás.jpg" alt="Pulseira Borboleta Lilás 1" class="active">
-                            <img src="LILA 1.jpg" alt="Pulseira Borboleta Lilás 2">
-                            <img src="LILA 2.jpg" alt="Pulseira Borboleta Lilás 3">
+                            <img src="Conjunto gardenia 1.jpeg" alt="Conjunto Gardênia 1" class="active">
+                            <img src="Conjunto gardenia 2.jpeg" alt="Conjunto Gardênia 2">
+                            <img src="Conjunto gardenia 3.jpeg" alt="Conjunto Gardênia 3">
                         </div>
                         <button class="carousel-arrow prev" onclick="changeImage(0, -1)">
                             <i class="fas fa-chevron-left"></i>
@@ -1619,13 +1667,101 @@
                             <span class="carousel-dot" onclick="goToImage(0, 2)"></span>
                         </div>
                     </div>
+                    <div class="product-badge">🔥 Lançamento</div>
+                    <div class="stock-badge">💎 Pulseira + Colar</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Conjunto Gardênia (Pulseira + Colar)</h3>
+                    <div class="product-price">
+                        R$ 130,00
+                        <span class="original-price">R$ 150,00</span>
+                        <span class="discount-tag">-13% OFF</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(novo)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2: Pulseira Gardênia -->
+            <div class="product-card" data-categories="pulseiras">
+                <div class="product-image">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="Pulseira Gardênia 1.jpeg" alt="Pulseira Gardênia 1" class="active">
+                            <img src="Pulseira Gardênia 2.jpeg" alt="Pulseira Gardênia 2">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(1, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(1, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(1, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(1, 1)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">🌼 Delicada e Floral</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Gardênia</h3>
+                    <div class="product-price">
+                        R$ 55,00
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(novo)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3: Borboleta Lilás -->
+            <div class="product-card" data-categories="pulseiras">
+                <div class="product-image">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="Borboleta Lilás.jpg" alt="Pulseira Borboleta Lilás 1" class="active">
+                            <img src="LILA 1.jpg" alt="Pulseira Borboleta Lilás 2">
+                            <img src="LILA 2.jpg" alt="Pulseira Borboleta Lilás 3">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(2, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(2, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(2, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(2, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(2, 2)"></span>
+                        </div>
+                    </div>
                     <div class="product-badge">Novo</div>
                     <div class="stock-badge">🔥 Só 3 disponíveis!</div>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Pulseira Borboleta Lilás</h3>
                     <div class="product-price">
-                        R$ 20,00
+                        R$ 30,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -1642,100 +1778,14 @@
                 </div>
             </div>
 
-            <!-- Produto 2 -->
-            <div class="product-card">
+            <!-- Producto 4: Margarida -->
+            <div class="product-card" data-categories="pulseiras">
                 <div class="product-image">
                     <div class="product-carousel">
                         <div class="carousel-images">
                             <img src="Margarete.jpg" alt="Pulseira Margarida 1" class="active">
                             <img src="MARGARETE 1.jpg" alt="Pulseira Margarida 2">
                             <img src="MARGARETE 2.jpg" alt="Pulseira Margarida 3">
-                        </div>
-                        <button class="carousel-arrow prev" onclick="changeImage(1, -1)">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="carousel-arrow next" onclick="changeImage(1, 1)">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" onclick="goToImage(1, 0)"></span>
-                            <span class="carousel-dot" onclick="goToImage(1, 1)"></span>
-                            <span class="carousel-dot" onclick="goToImage(1, 2)"></span>
-                        </div>
-                    </div>
-                    <div class="product-badge">Novo</div>
-                    <div class="stock-badge">⚡ Últimas 5 unidades!</div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pulseira Margarida</h3>
-                    <div class="product-price">
-                        R$ 20,00
-                    </div>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(8)</span>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
-                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Produto 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="product-carousel">
-                        <div class="carousel-images">
-                            <img src="luna 1.jpg" alt="Pulseira Luna Lavanda 1" class="active">
-                            <img src="luna 2.jpg" alt="Pulseira Luna Lavanda 2">
-                        </div>
-                        <button class="carousel-arrow prev" onclick="changeImage(2, -1)">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="carousel-arrow next" onclick="changeImage(2, 1)">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" onclick="goToImage(2, 0)"></span>
-                            <span class="carousel-dot" onclick="goToImage(2, 1)"></span>
-                        </div>
-                    </div>
-                    <div class="product-badge">Novo</div>
-                    <div class="stock-badge">💜 Apenas 4 restantes!</div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pulseira Luna Lavanda</h3>
-                    <div class="product-price">
-                        R$ 20,00
-                    </div>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(6)</span>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
-                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Producto 4: Flor de Lis -->
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="product-carousel">
-                        <div class="carousel-images">
-                            <img src="FLOR DE LI.jpeg" alt="Pulseira Flor de Lis 1" class="active">
-                            <img src="FLOR PALIDA1.jpeg" alt="Pulseira Flor de Lis 2">
-                            <img src="FLOR PALDIA 2.jpeg" alt="Pulseira Flor de Lis 3">
                         </div>
                         <button class="carousel-arrow prev" onclick="changeImage(3, -1)">
                             <i class="fas fa-chevron-left"></i>
@@ -1750,12 +1800,12 @@
                         </div>
                     </div>
                     <div class="product-badge">Novo</div>
-                    <div class="stock-badge">💜 Edição Limitada!</div>
+                    <div class="stock-badge">⚡ Últimas 5 unidades!</div>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Pulseira Flor de Lis</h3>
+                    <h3 class="product-name">Pulseira Margarida</h3>
                     <div class="product-price">
-                        R$ 20,00
+                        R$ 30,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -1772,13 +1822,14 @@
                 </div>
             </div>
 
-            <!-- Producto 5: Pulseira da Venezuela -->
-            <div class="product-card">
+            <!-- Producto 5: Flor de Lis -->
+            <div class="product-card" data-categories="pulseiras">
                 <div class="product-image">
                     <div class="product-carousel">
                         <div class="carousel-images">
-                            <img src="PULSEIRA DA VENEZUELA.jpeg" alt="Pulseira da Venezuela 1" class="active">
-                            <img src="PULSEIRA DA VENEZUELA 1.jpeg" alt="Pulseira da Venezuela 2">
+                            <img src="FLOR DE LI.jpeg" alt="Pulseira Flor de Lis 1" class="active">
+                            <img src="FLOR PALIDA1.jpeg" alt="Pulseira Flor de Lis 2">
+                            <img src="FLOR PALDIA 2.jpeg" alt="Pulseira Flor de Lis 3">
                         </div>
                         <button class="carousel-arrow prev" onclick="changeImage(4, -1)">
                             <i class="fas fa-chevron-left"></i>
@@ -1789,6 +1840,49 @@
                         <div class="carousel-nav">
                             <span class="carousel-dot active" onclick="goToImage(4, 0)"></span>
                             <span class="carousel-dot" onclick="goToImage(4, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(4, 2)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">💜 Edição Limitada!</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Flor de Lis</h3>
+                    <div class="product-price">
+                        R$ 50,00
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(8)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 6: Pulseira da Venezuela -->
+            <div class="product-card" data-categories="pulseiras">
+                <div class="product-image">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="PULSEIRA DA VENEZUELA.jpeg" alt="Pulseira da Venezuela 1" class="active">
+                            <img src="PULSEIRA DA VENEZUELA 1.jpeg" alt="Pulseira da Venezuela 2">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(5, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(5, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(5, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(5, 1)"></span>
                         </div>
                     </div>
                     <div class="product-badge">Novo</div>
@@ -1797,7 +1891,7 @@
                 <div class="product-info">
                     <h3 class="product-name">Pulseira da Venezuela</h3>
                     <div class="product-price">
-                        R$ 20,00
+                        R$ 55,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -1814,8 +1908,8 @@
                 </div>
             </div>
 
-            <!-- Producto 6: Flores de Rosalinda -->
-            <div class="product-card">
+            <!-- Producto 7: Flores de Rosalinda -->
+            <div class="product-card" data-categories="pulseiras">
                 <div class="product-image">
                     <div class="product-carousel">
                         <div class="carousel-images">
@@ -1823,16 +1917,16 @@
                             <img src="PULSERA FLORES DE ROSALINDA 1.jpeg" alt="Pulseira Flores de Rosalinda 2">
                             <img src="PULSERA FLORES DE ROSALINDA 2.jpeg" alt="Pulseira Flores de Rosalinda 3">
                         </div>
-                        <button class="carousel-arrow prev" onclick="changeImage(5, -1)">
+                        <button class="carousel-arrow prev" onclick="changeImage(6, -1)">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button class="carousel-arrow next" onclick="changeImage(5, 1)">
+                        <button class="carousel-arrow next" onclick="changeImage(6, 1)">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                         <div class="carousel-nav">
-                            <span class="carousel-dot active" onclick="goToImage(5, 0)"></span>
-                            <span class="carousel-dot" onclick="goToImage(5, 1)"></span>
-                            <span class="carousel-dot" onclick="goToImage(5, 2)"></span>
+                            <span class="carousel-dot active" onclick="goToImage(6, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(6, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(6, 2)"></span>
                         </div>
                     </div>
                     <div class="product-badge">Novo</div>
@@ -1841,7 +1935,7 @@
                 <div class="product-info">
                     <h3 class="product-name">Pulseira Flores de Rosalinda</h3>
                     <div class="product-price">
-                        R$ 20,00
+                        R$ 55,00
                     </div>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -1850,6 +1944,50 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <span>(15)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 8: Blue Bloom -->
+            <div class="product-card" data-categories="pulseiras">
+                <div class="product-image">
+                    <div class="product-carousel">
+                        <div class="carousel-images">
+                            <img src="Blue bloom 1.jpeg" alt="Pulseira Blue Bloom 1" class="active">
+                            <img src="Blue bloom 2.jpeg" alt="Pulseira Blue Bloom 2">
+                            <img src="Blue bloom 3.jpeg" alt="Pulseira Blue Bloom 3">
+                        </div>
+                        <button class="carousel-arrow prev" onclick="changeImage(7, -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow next" onclick="changeImage(7, 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" onclick="goToImage(7, 0)"></span>
+                            <span class="carousel-dot" onclick="goToImage(7, 1)"></span>
+                            <span class="carousel-dot" onclick="goToImage(7, 2)"></span>
+                        </div>
+                    </div>
+                    <div class="product-badge">Novo</div>
+                    <div class="stock-badge">💙 Edição Especial</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pulseira Blue Bloom</h3>
+                    <div class="product-price">
+                        R$ 55,00
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(novo)</span>
                     </div>
                     <div class="product-actions">
                         <button class="btn add-to-cart">Adicionar ao Carrinho</button>
@@ -2118,39 +2256,51 @@
         const products = [
             {
                 id: 1,
-                name: "Pulseira Borboleta Lilás",
-                price: 20.00,
-                image: "Borboleta Lilás.jpg"
+                name: "Conjunto Gardênia (Pulseira + Colar)",
+                price: 130.00,
+                image: "Conjunto gardenia 1.jpeg"
             },
             {
                 id: 2,
-                name: "Pulseira Margarida",
-                price: 20.00,
-                image: "Margarete.jpg"
+                name: "Pulseira Gardênia",
+                price: 55.00,
+                image: "Pulseira Gardênia 1.jpeg"
             },
             {
                 id: 3,
-                name: "Pulseira Luna Lavanda",
-                price: 20.00,
-                image: "luna 1.jpg"
+                name: "Pulseira Borboleta Lilás",
+                price: 30.00,
+                image: "Borboleta Lilás.jpg"
             },
             {
                 id: 4,
-                name: "Pulseira Flor de Lis",
-                price: 20.00,
-                image: "FLOR DE LI.jpeg"
+                name: "Pulseira Margarida",
+                price: 30.00,
+                image: "Margarete.jpg"
             },
             {
                 id: 5,
-                name: "Pulseira da Venezuela",
-                price: 20.00,
-                image: "PULSEIRA DA VENEZUELA.jpeg"
+                name: "Pulseira Flor de Lis",
+                price: 50.00,
+                image: "FLOR DE LI.jpeg"
             },
             {
                 id: 6,
+                name: "Pulseira da Venezuela",
+                price: 55.00,
+                image: "PULSEIRA DA VENEZUELA.jpeg"
+            },
+            {
+                id: 7,
                 name: "Pulseira Flores de Rosalinda",
-                price: 20.00,
+                price: 55.00,
                 image: "PULSERA FLORES DE ROSALINDA.jpeg"
+            },
+            {
+                id: 8,
+                name: "Pulseira Blue Bloom",
+                price: 55.00,
+                image: "Blue bloom 1.jpeg"
             }
         ];
 
@@ -2364,8 +2514,60 @@
         // Inicializar contador do carrinho
         updateCartCount();
 
-        // Links de navegação (simulação)
+        // Filtro por categoría
+        const categoryMeta = {
+            all:        { title: 'Pulseiras em Destaque', subtitle: 'Conheça nossas pulseiras mais vendidas e amadas' },
+            pulseiras:  { title: 'Pulseiras',             subtitle: 'Nossa coleção completa de pulseiras' },
+            colares:    { title: 'Colares',               subtitle: 'Colares delicados e exclusivos' },
+            lancamento: { title: 'Lançamentos',           subtitle: 'As novidades que acabaram de chegar' },
+            promocao:   { title: 'Promoções',             subtitle: 'Aproveite os descontos exclusivos' }
+        };
+
+        const productsGrid = document.querySelector('.products-grid');
+        const sectionHeader = document.querySelector('.section .section-header');
+        const sectionTitleEl = sectionHeader.querySelector('h2');
+        const sectionSubtitleEl = sectionHeader.querySelector('p');
+
+        function applyCategoryFilter(cat) {
+            const cards = document.querySelectorAll('.product-card');
+            let visible = 0;
+            cards.forEach(card => {
+                const cats = (card.dataset.categories || '').split(',').map(s => s.trim());
+                const hideFromAll = card.dataset.hideFromAll === 'true';
+                const match = cat === 'all' ? !hideFromAll : cats.includes(cat);
+                card.style.display = match ? '' : 'none';
+                if (match) visible++;
+            });
+            const meta = categoryMeta[cat] || categoryMeta.all;
+            sectionTitleEl.textContent = meta.title;
+            sectionSubtitleEl.textContent = visible === 0
+                ? 'Em breve novos produtos nesta categoria.'
+                : meta.subtitle;
+            productsGrid.querySelectorAll('.empty-category').forEach(n => n.remove());
+            if (visible === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'empty-category';
+                empty.textContent = '✨ Em breve mais novidades por aqui.';
+                productsGrid.appendChild(empty);
+            }
+            document.querySelectorAll('.category-link').forEach(l => {
+                l.classList.toggle('active', l.dataset.category === cat);
+            });
+        }
+
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                applyCategoryFilter(link.dataset.category);
+                document.querySelector('.section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        applyCategoryFilter('all');
+
+        // Links de navegação (simulação) — excluye categorías y íconos del header
         document.querySelectorAll('a[href="#"]').forEach(link => {
+            if (link.classList.contains('category-link')) return;
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const text = link.textContent.trim();
@@ -2380,7 +2582,7 @@
             constructor() {
                 this.responses = {
                     productos: {
-                        text: "✨ ¡Nuestras pulseiras son únicas! Tenemos una hermosa colección de pulseras artesanales:\n\n🦋 Pulseira Borboleta Lilás - R$ 20,00\n🌼 Pulseira Margarida - R$ 20,00\n🌙 Pulseira Luna Lavanda - R$ 20,00\n\n💜 Todas hechas con amor y materiales de alta calidad\n📸 ¡Mira más fotos en nuestro Instagram!",
+                        text: "✨ ¡Nuestras pulseiras son únicas! Tenemos una hermosa colección de pulseras artesanales:\n\n🦋 Pulseira Borboleta Lilás - R$ 30,00\n🌼 Pulseira Margarida - R$ 30,00\n🌷 Pulseira Flor de Lis - R$ 50,00\n🇻🇪 Pulseira da Venezuela - R$ 55,00\n🌸 Pulseira Flores de Rosalinda - R$ 55,00\n💎 Conjunto Gardênia (Pulseira + Colar) - R$ 130,00\n\n💜 Todas hechas con amor y materiales de alta calidad\n📸 ¡Mira más fotos en nuestro Instagram!",
                         showInstagram: true
                     },
                     envios: {
@@ -2408,7 +2610,7 @@
                         showInstagram: true
                     },
                     precios: {
-                        text: "💰 Nuestros precios son súper accesibles:\n\n🌸 Todas nuestras pulseiras a R$ 20,00\n✨ Calidad premium\n📦 Envío coordinado según tu ubicación\n💜 Formas de pago por Instagram\n\n¡Cada pulseira es una obra de arte única! 🎨",
+                        text: "💰 Nuestros precios:\n\n🦋 Borboleta Lilás · Margarida — R$ 30,00\n🌷 Flor de Lis — R$ 50,00\n🇻🇪 Venezuela · 🌸 Flores de Rosalinda — R$ 55,00\n💎 Conjunto Gardênia (Pulseira + Colar) — R$ 130,00\n\n✨ Calidad premium\n📦 Envío coordinado según tu ubicación\n💜 Formas de pago por Instagram",
                         showInstagram: true
                     },
                     materiales: {
@@ -2622,7 +2824,7 @@
         }
 
         // CARRUSEL DE IMÁGENES DE PRODUCTOS
-        let currentImageIndex = [0, 0, 0, 0, 0, 0]; // Un índice por cada producto
+        let currentImageIndex = [0, 0, 0, 0, 0, 0, 0, 0]; // Un índice por cada producto
 
         function changeImage(productIndex, direction) {
             const carousel = document.querySelectorAll('.product-carousel')[productIndex];
